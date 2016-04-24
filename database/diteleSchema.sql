@@ -13,10 +13,10 @@ CREATE TABLE Users(
 );
 
 CREATE TABLE Class(
-	classID varchar(20),
+	classID int not null auto_increment,
 	userID varchar(20),
 	classTopic varchar(20),
-	subTopic varchar(20),
+	subTopic varchar(200),
 	dayOfTheWeek int(1),
 	classStartTime time,
 	classEndTime time,
@@ -24,12 +24,15 @@ CREATE TABLE Class(
 	PRIMARY KEY (classID),
 	FOREIGN KEY (userID) references Users(userID)
 );
-
+#drop table Class; 
 
 CREATE TABLE Registration(
 	userID varchar(20),
-	classID varchar(20),
-	userType varchar(20),
+	classID int,
+	userType varchar(2),
 	FOREIGN KEY (userID) references Users(userID),
 	FOREIGN KEY (classID) references Class(classID)
 );
+#drop table Registration;
+
+

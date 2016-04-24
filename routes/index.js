@@ -18,7 +18,30 @@ router.get('/', function(req, res, next) {
 
 //Login verification
 router.post('/login', function(req, res, next) {
-  res.send("LOGIN PAGE");
+  console.log("Logging in");
+  var username = req.body.username;
+  var pwd = req.body.pwd;
+
+  var query = 'select userID,fullname from Users where userID = "'+ username + '" and password = "' + pwd + '"';
+  
+  connection.query(query, function(err, rows, fields){
+  	if(!err){
+  		if(rows.length > 0){
+  			console.log("login successful");
+  			res.send("LOGIN PAGE");
+  		}
+  		else{
+  			console.log("Invalid username/password");
+  			res.render("index", {message: " Invalid UserName/Password. "});	
+  		}
+  	}
+  	else{
+  		console.log("DB Error");
+  		res.render("index", {message: " Error connecting to DB. "});
+  	}
+
+  });
+
 });
 
 //RRender Redister Page

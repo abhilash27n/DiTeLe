@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DiTeLe - User Registration</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>User Registration</h1>
+    <p>{{ error }}</p>
+    <form id="userRegistration" action="/regUser" method="post">
+	    <table>
+	    	<tr>
+	    		<td>Full Name</td>
+	    		<td><input type="text" id="fname" name="fname" value="{{ fname }}" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>Username</td>
+	    		<td><input type="text" id="username" name="username" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>Password</td>
+	    		<td><input type="password" id="pwd" name="pwd" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>Email Address</td>
+	    		<td><input type="email" id="email" name="email" value="{{ email }}" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>About</td>
+	    		<td><textarea id="about" name="about" maxlength="200" rows=4 cols=50 required>{{ about }}</textarea></td>
+	    	</tr>
+	    	<tr>
+	    		<td><input type="submit" value="Register"/></td>
+	    		<td><input type="reset" value="Reset"/></td>
+	    	</tr>
+	    </table>
+    </form>
+
+
+  </body>
+</html>

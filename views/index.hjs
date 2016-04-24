@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
+    <title>Welcome to DiTeLe</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <h1>{{ message }} Login to DiTeLe.</h1>
+    <form id="userLogin" action="/login" method="post">
+	    <table>
+	    	
+	    	<tr>
+	    		<td>Username</td>
+	    		<td><input type="text" id="username" name="username" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>Password</td>
+	    		<td><input type="password" id="pwd" name="pwd" required/></td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td><input type="submit" value="Log-In"/></td>
+	    		<td><input type="reset" value="Reset"</td>
+	    	</tr>
+	    </table>
+
+    <a href="/register"> Register </a>
   </body>
 </html>

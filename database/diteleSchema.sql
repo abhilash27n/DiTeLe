@@ -17,12 +17,14 @@ CREATE TABLE Class(
 	userID varchar(20),
 	classTopic varchar(20),
 	subTopic varchar(20),
-	weekDay varchar(20),
-	classTime time,
+	dayOfTheWeek int(1),
+	classStartTime time,
+	classEndTime time,
 	noteFromTutor varchar(100),
 	PRIMARY KEY (classID),
 	FOREIGN KEY (userID) references Users(userID)
 );
+
 
 CREATE TABLE Registration(
 	userID varchar(20),

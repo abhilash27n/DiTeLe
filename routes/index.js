@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.secret){
-  	res.send("LOGIN PAGE"+req.session.secret);
+  	res.render("userMainPage", {name: req.session.fullname});
   }
   else{
   	res.render("index");
@@ -36,7 +36,7 @@ router.post('/login', function(req, res, next) {
   			console.log("login successful");
   			req.session.secret = username;
   			req.session.fullname = rows[0].fullname;
-  			res.send("LOGIN PAGE"+req.session.secret);
+  			res.render("userMainPage", {name: req.session.fullname});
   		}
   		else{
   			console.log("Invalid username/password");

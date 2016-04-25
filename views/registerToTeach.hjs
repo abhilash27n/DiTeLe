@@ -3,6 +3,7 @@
   <head>
     <title>DiTeLe - Register to Teach</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="../javascripts/jquery-1.10.2.js"></script>
   </head>
   <body>
     <h1>Register To Teahc</h1>
@@ -71,13 +72,22 @@
 	    		<td><textarea id="note" name="note" maxlength="100" rows=2 cols=50 required></textarea></td>
 	    	</tr>
 	    	<tr>
-	    		<td><input type="submit" value="Register"/></td>
+	    		<td><input type="submit" id="submitButton" value="Register"/></td>
 	    		<td><input type="reset" value="Reset"/></td>
 	    	</tr>
 	    </table>
     </form>
 
     <script type="text/javascript">
+
+    //ERROR checking added for day selection
+    $('#submitButton').click(function() {
+	  if (jQuery('#regToTeach input[type=checkbox]:checked').length == 0) {
+	    alert("Please select atleast one day")
+	    return false;//add this
+	  }
+	});
+
     function monWeekCheck(){
     	var element = document.getElementById("mon");
 

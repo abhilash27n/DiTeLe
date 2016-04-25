@@ -13,7 +13,13 @@ var connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if(req.session.secret){
+  	res.send("LOGIN PAGE"+req.session.secret);
+  }
+  else{
+  	res.render("index");
+  }
+  	
 });
 
 //Login verification
@@ -28,7 +34,9 @@ router.post('/login', function(req, res, next) {
   	if(!err){
   		if(rows.length > 0){
   			console.log("login successful");
-  			res.send("LOGIN PAGE");
+  			req.session.secret = username;
+  			req.session.fullname = rows[0].fullname;
+  			res.send("LOGIN PAGE"+req.session.secret);
   		}
   		else{
   			console.log("Invalid username/password");

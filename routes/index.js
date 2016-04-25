@@ -82,10 +82,44 @@ router.post('/regUser', function(req, res, next) {
 	});
 });
 
-//Register to Teach
+//Render Register to Teach
 router.post('/registerToTeach', function(req, res, next) {
-  console.log("Registering to Teach Page");
-  res.render("registerToTeach", {name: req.session.username});
+  if(req.session.username){
+  	console.log("Registering to Teach Page");
+  	res.render("registerToTeach", {name: req.session.username});
+  }
+  else{
+  	res.render("index");
+  }
+});
+
+
+//Register to teach data form submit
+router.post('/regTeacher', function(req, res, next) {
+  	console.log("Registering to Teach...");
+  	var username = req.session.username;
+  	var topic = req.body.topic;
+  	var subTopic = req.body.subTopic;
+  	var weekCheck = req.body.weekday;
+  	var note = req.body.note;
+  	var startTime = [req.body.monStartTime,req.body.tueStartTime,req.body.wedStartTime,req.body.thuStartTime,req.body.friStartTime,req.body.satStartTime,req.body.sunStartTime];
+  	var endTime = [req.body.monEndTime,req.body.tueEndTime,req.body.wedEndTime,req.body.thuEndTime,req.body.friEndTime,req.body.satEndTime,req.body.sunEndTime];
+  	var weekDayArray = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6};
+  	for(var i = 0; i < weekCheck.length; i++){
+  		var index = weekDayArray[weekCheck[i]];
+  		console.log("Registering for "+weekCheck[i]);
+  		var tuple = {userID: username, classTopic: topic, subTopic: subTopic, dayOfTheWeek: index, classStartTime: startTime[index], classEndTime: endTime[index], noteFromTutor: note}
+  		connection.query('INSERT INTO Class SET ?', tuple, function(err, response) {
+		  if (!err){
+			console.log('Registration for class successful');
+		  }
+		  else{
+		  	console.log('Registration error, probably due to data config');
+		  }
+		    
+		});
+  	}
+  	res.render("userMainPage", {name: req.session.fullname});
 });
 
 module.exports = router;

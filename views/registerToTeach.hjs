@@ -6,7 +6,7 @@
     <script src="../javascripts/jquery-1.10.2.js"></script>
   </head>
   <body>
-    <h1>Register To Teahc</h1>
+    <h1>Register To Teach</h1>
     <p>{{ error }}</p>
     <form id="regToTeach" action="/regTeacher" method="post">
 	    <table>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DiTeLe - Register to Teach</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Register To Teahc</h1>
+    <p>{{ error }}</p>
+    <form id="regToTeach" action="/regTeacher" method="post">
+	    <table>
+	    	<tr>
+	    		<td>Username</td>
+	    		<td><input type="text" id="username" name="username" value="{{ name }}" required disabled/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>Topic</td>
+	    		<td><input type="text" id="topic" name="topic" required/></td>
+	    	</tr>
+	    	<tr>
+	    		<td>I can teach...</td>
+	    		<td><textarea id="subTopic" name="subTopic" maxlength="200" rows=4 cols=50 required>{{ about }}</textarea></td>
+	    	</tr>
+	    	<tr>
+	    		<td>When?</td>
+	    		<td>
+	    			<table>
+	    			 	<col width=150/>
+	    			 	<col width=150/>
+	    			 	<col width=150/>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="mon" value="Monday" onchange="monWeekCheck();">Monday</td>
+	    					<td id="monSt" style="display: none;">Start Time: <input type="time" id="monStartTime" name="monStartTime"/></td>
+	    					<td id="monEnd" style="display: none;">End Time: <input type="time" id="monEndTime" name="monEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="tue" value="Tuesday" onchange="tueWeekCheck();">Tuesday</td>
+	    					<td id="tueSt" style="display: none;">Start Time: <input type="time" id="tueStartTime" name="tueStartTime"/></td>
+	    					<td id="tueEnd" style="display: none;">End Time: <input type="time" id="tueEndTime" name="tueEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="wed" value="Wednesday" onchange="wedWeekCheck();">Wednesday</td>
+	    					<td id="wedSt" style="display: none;">Start Time: <input type="time" id="wedStartTime" name="wedStartTime"/></td>
+	    					<td id="wedEnd" style="display: none;">End Time: <input type="time" id="wedEndTime" name="wedEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="thu" value="Thursday" onchange="thuWeekCheck();">Thursday</td>
+	    					<td id="thuSt" style="display: none;">Start Time: <input type="time" id="thuStartTime" name="thuStartTime"/></td>
+	    					<td id="thuEnd" style="display: none;">End Time: <input type="time" id="thuEndTime" name="thuEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="fri" value="Friday" onchange="friWeekCheck();">Friday</td>
+	    					<td id="friSt" style="display: none;">Start Time: <input type="time" id="friStartTime" name="friStartTime"/></td>
+	    					<td id="friEnd" style="display: none;">End Time: <input type="time" id="friEndTime" name="friEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="sat" value="Saturday" onchange="satWeekCheck();">Saturday</td>
+	    					<td id="satSt" style="display: none;">Start Time: <input type="time" id="satStartTime" name="satStartTime"/></td>
+	    					<td id="satEnd" style="display: none;">End Time: <input type="time" id="satEndTime" name="satEndTime"/></td>
+	    				</tr>
+	    				<tr>
+	    					<td><input type="checkbox" name="weekday" id="sun" value="Sunday" onchange="sunWeekCheck();">Sunday</td>
+	    					<td id="sunSt" style="display: none;">Start Time: <input type="time" id="sunStartTime" name="sunStartTime"/></td>
+	    					<td id="sunEnd" style="display: none;">End Time: <input type="time" id="sunEndTime" name="sunEndTime"/></td>
+	    				</tr>
+	    			</table>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>Additional Comments</td>
+	    		<td><textarea id="note" name="note" maxlength="100" rows=2 cols=50 required></textarea></td>
+	    	</tr>
+	    	<tr>
+	    		<td><input type="submit" value="Register"/></td>
+	    		<td><input type="reset" value="Reset"/></td>
+	    	</tr>
+	    </table>
+    </form>
+
+    <script type="text/javascript">
+    function monWeekCheck(){
+    	var element = document.getElementById("mon");
+
+    	if(element.checked == true){
+    		document.getElementById("monSt").style.display = "block";
+    		document.getElementById("monStartTime").required = true;
+    		document.getElementById("monEnd").style.display = "block";
+    		document.getElementById("monEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("monSt").style.display = "none";
+    		document.getElementById("monStartTime").required = false;
+    		document.getElementById("monEnd").style.display = "none";
+    		document.getElementById("monEndTime").required = false;
+    	}
+    }
+        function tueWeekCheck(){
+    	var element = document.getElementById("tue");
+
+    	if(element.checked == true){
+    		document.getElementById("tueSt").style.display = "block";
+    		document.getElementById("tueStartTime").required = true;
+    		document.getElementById("tueEnd").style.display = "block";
+    		document.getElementById("tueEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("tueSt").style.display = "none";
+    		document.getElementById("tueStartTime").required = false;
+    		document.getElementById("tueEnd").style.display = "none";
+    		document.getElementById("tueEndTime").required = false;
+    	}
+    }
+    function wedWeekCheck(){
+    	var element = document.getElementById("wed");
+
+    	if(element.checked == true){
+    		document.getElementById("wedSt").style.display = "block";
+    		document.getElementById("wedStartTime").required = true;
+    		document.getElementById("wedEnd").style.display = "block";
+    		document.getElementById("wedEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("wedSt").style.display = "none";
+    		document.getElementById("wedStartTime").required = false;
+    		document.getElementById("wedEnd").style.display = "none";
+    		document.getElementById("wedEndTime").required = false;
+    	}
+    }
+    function thuWeekCheck(){
+    	var element = document.getElementById("thu");
+
+    	if(element.checked == true){
+    		document.getElementById("thuSt").style.display = "block";
+    		document.getElementById("thuStartTime").required = true;
+    		document.getElementById("thuEnd").style.display = "block";
+    		document.getElementById("thuEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("thuSt").style.display = "none";
+    		document.getElementById("thuStartTime").required = false;
+    		document.getElementById("thuEnd").style.display = "none";
+    		document.getElementById("thuEndTime").required = false;
+    	}
+    }
+    function friWeekCheck(){
+    	var element = document.getElementById("fri");
+
+    	if(element.checked == true){
+    		document.getElementById("friSt").style.display = "block";
+    		document.getElementById("friStartTime").required = true;
+    		document.getElementById("friEnd").style.display = "block";
+    		document.getElementById("friEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("friSt").style.display = "none";
+    		document.getElementById("friStartTime").required = false;
+    		document.getElementById("friEnd").style.display = "none";
+    		document.getElementById("friEndTime").required = false;
+    	}
+    }
+    function satWeekCheck(){
+    	var element = document.getElementById("sat");
+
+    	if(element.checked == true){
+    		document.getElementById("satSt").style.display = "block";
+    		document.getElementById("satStartTime").required = true;
+    		document.getElementById("satEnd").style.display = "block";
+    		document.getElementById("satEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("satSt").style.display = "none";
+    		document.getElementById("satStartTime").required = false;
+    		document.getElementById("satEnd").style.display = "none";
+    		document.getElementById("satEndTime").required = false;
+    	}
+    }
+    function sunWeekCheck(){
+    	var element = document.getElementById("sun");
+
+    	if(element.checked == true){
+    		document.getElementById("sunSt").style.display = "block";
+    		document.getElementById("sunStartTime").required = true;
+    		document.getElementById("sunEnd").style.display = "block";
+    		document.getElementById("sunEndTime").required = true;
+    	}
+    	else{
+    		document.getElementById("sunSt").style.display = "none";
+    		document.getElementById("sunStartTime").required = false;
+    		document.getElementById("sunEnd").style.display = "none";
+    		document.getElementById("sunEndTime").required = false;
+    	}
+    }
+
+    </script>
+
+  </body>
+</html>

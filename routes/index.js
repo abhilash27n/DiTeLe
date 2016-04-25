@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session.secret){
+  if(req.session.username){
   	res.render("userMainPage", {name: req.session.fullname});
   }
   else{
@@ -34,7 +34,7 @@ router.post('/login', function(req, res, next) {
   	if(!err){
   		if(rows.length > 0){
   			console.log("login successful");
-  			req.session.secret = username;
+  			req.session.username = username;
   			req.session.fullname = rows[0].fullname;
   			res.render("userMainPage", {name: req.session.fullname});
   		}
@@ -80,6 +80,12 @@ router.post('/regUser', function(req, res, next) {
 	  }
 	    
 	});
+});
+
+//Register to Teach
+router.post('/registerToTeach', function(req, res, next) {
+  console.log("Registering to Teach Page");
+  res.render("registerToTeach", {name: req.session.username});
 });
 
 module.exports = router;

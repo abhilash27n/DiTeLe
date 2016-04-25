@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to DiTeLe</title>
+    <title>DiTeLe - Welcom</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Hi, {{ name }} </h1>
-    <h2> what would you like to do today?? </h2>
-    <form id="userMainPage" action="/userHomePage" method="post">
-	    <table>	    	
-	    	<tr>
-	    		<td><input type="button"value="I want to Teach!"</td>
-	    	</tr>
-	    	<tr>
-	    		<td><input type="button" value="I want to Learn!"</td>
-	    	</tr>
-	    </table>
+    <h2>What would you like to do today??</h2>
+    <form id="regTeach" action="/registerToTeach" method="post">
+        <input type="submit"value="I want to Teach!"/>
+    </form>
+    <br/>
+    <form id="regLearn" action="/registerToLearn" method="post">
+        <input type="submit"value="I want to Learn!"/>
+    </form>
   </body>
 </html>

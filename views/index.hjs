@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to DiTeLe</title>
+    <title>DiTeLe - Welcome</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ message }} Login to DiTeLe.</h1>
+    <h1>Login to DiTeLe.</h1>
+    <p>{{ message }}</p>
     <form id="userLogin" action="/login" method="post">
 	    <table>
 	    	

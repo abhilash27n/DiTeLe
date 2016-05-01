@@ -10,6 +10,12 @@
     <h3> {{ message }} </h3>
     <h2>What would you like to do today??</h2>
 
+    <div style="float: right;">
+	    <form action="/logout">
+	    	<input type="submit" value="Logout"/>
+	    </form>
+    </div>
+
     <table style= "width:100%">
     	<tr>
 	    	<td>
@@ -95,6 +101,10 @@
 		function joinClass(classID){
 			alert("joining class..."+ classID);
 		}
+
+    function startClass(classID){
+      alert("starting class..."+ classID);
+    }
     </script>
 
 

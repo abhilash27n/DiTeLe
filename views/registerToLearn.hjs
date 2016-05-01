@@ -19,7 +19,7 @@
             <th>Note From Tutor</th>
         </tr>
     </table>
-    <div>
+    <div style="display: none;">
     <form id="regToLearn" action="/regStudent" method="post">
         <input type="text" id="classID" name="classID" value="" />
     </form>
@@ -45,12 +45,9 @@
         })
 
         function registerForClass(classID){
-            //alert(classID);
             document.getElementById("classID").value = classID;
-            alert(classID);
             $('#regToLearn').submit();
-        }
-   
+        }   
 
     </script>
 

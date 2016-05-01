@@ -136,8 +136,13 @@ router.post('/regTeacher', function(req, res, next) {
 //get teaching classes
 router.get('/getTeachingClass', function(req, res, next) {
   	console.log("Getting Teaching class...");
+  	var option = req.query.user;
   	var username = req.session.username;
-	var query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
+  	var query;
+  	if(option == "USER")
+		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
+	else if(option == "ALL")
+		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class';
 	connection.query(query, function(err, rows, fields) {
 	  if (!err){
 		res.send(JSON.stringify(rows));

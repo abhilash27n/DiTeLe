@@ -122,4 +122,22 @@ router.post('/regTeacher', function(req, res, next) {
   	res.render("userMainPage", {name: req.session.fullname});
 });
 
+//get teaching classes
+router.get('/getTeachingClass', function(req, res, next) {
+  	console.log("Getting Teaching class...");
+  	var username = 'abhilash';
+	var query = 'select classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
+	connection.query(query, function(err, rows, fields) {
+	  if (!err){
+		res.send(JSON.stringify(rows));
+	  }
+	  else{
+	  	console.log('Error getting what user teaches');
+	  }
+	    
+	});
+});
+
+
+
 module.exports = router;

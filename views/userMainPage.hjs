@@ -62,6 +62,8 @@
     <div id="hiddenVideoFormDiv" style="display:none;">
     	<form id="videoReqForm" action="/videoConf" method="post">
     		<input type="text" name="classID" id="classID" value="" />
+    		<input type="text" name="topic" id="topic" value="" />
+    		<input type="text" name="subtopic" id="subtopic" value="" />
     		<input type="text" name="userType" id="userType" value="" />
     	</form>
     </div>
@@ -80,7 +82,7 @@
 		            tr.append("<td>" + weekdayMap[json[i].dayOfTheWeek] + "</td>");
 		            tr.append("<td>" + json[i].classStartTime+ "</td>");
 		            tr.append("<td>" + json[i].classEndTime+ "</td>");
-		            tr.append("<td> <input type='button' value='Start Class' onClick='startClass("+ json[i].classID+")' /> </td>")
+		            tr.append("<td> <input type='button' value='Start Class' onClick='startClass("+ json[i].classID+",\""+json[i].classTopic+"\",\""+json[i].subTopic+"\");' /> </td>")
 		            $('#teachingTable').append(tr);
 		        }
 		    });
@@ -99,21 +101,25 @@
 		            tr.append("<td>" + json[i].classStartTime+ "</td>");
 		            tr.append("<td>" + json[i].classEndTime+ "</td>");
 		            tr.append("<td>" + json[i].noteFromTutor+"</td>");
-		            tr.append("<td> <input type='button' value='Join Class' onClick='joinClass("+ json[i].classID+")' /> </td>")
+		            tr.append("<td> <input type='button' value='Join Class' onClick='joinClass("+ json[i].classID+",\""+json[i].classTopic+"\",\""+json[i].subTopic+"\");' /> </td>")
 		            $('#learningTable').append(tr);
 		        }
 		    });
 		});
 
-		function joinClass(classID){
+		function joinClass(classID, topic, subtopic){
 			document.getElementById("classID").value = classID;
+			document.getElementById("topic").value = topic;
+			document.getElementById("subtopic").value = subtopic;			
 			document.getElementById("userType").value = "Student";
 			//alert("joining class..."+ classID);
 			$('#videoReqForm').submit();
 		}
 
-	    function startClass(classID){
+	    function startClass(classID, topic, subtopic){
 	    	document.getElementById("classID").value = classID;
+	    	document.getElementById("topic").value = topic;
+			document.getElementById("subtopic").value = subtopic;
 			document.getElementById("userType").value = "Teacher";
 	      	//alert("starting class..."+ classID);
 	      	$('#videoReqForm').submit();

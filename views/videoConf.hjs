@@ -7,6 +7,10 @@
         <button id="join">Join</button>
     <hr>
 </div>
+<hr>
+    <h1>Class: {{ topic }}</h1>
+    <h3>About: {{ subtopic }}</h3>
+<hr>
 <div id="videos-container"></div>
 
 <link rel="stylesheet" href="/stylesheets/style-video.css">

@@ -187,8 +187,10 @@ router.get('/logout', function(req, res, next) {
 //Video conference page rendering
 router.post('/videoConf', function(req, res, next) {
 	var classID = req.body.classID;
+	var topic = req.body.topic;
+	var subtopic = req.body.subtopic;
 	var userType = req.body.userType;
-	res.render('videoConf', {classID: classID, userType: userType});
+	res.render('videoConf', {classID: classID, userType: userType, topic: topic, subtopic: subtopic});
 });
 
 //get user profile

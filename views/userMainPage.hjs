@@ -58,6 +58,13 @@
 	    </tr>   
 
     </table>
+
+    <div id="hiddenVideoFormDiv" style="display:none;">
+    	<form id="videoReqForm" action="/videoConf" method="post">
+    		<input type="text" name="classID" id="classID" value="" />
+    		<input type="text" name="userType" id="userType" value="" />
+    	</form>
+    </div>
     
 
     <script type="text/javascript">
@@ -96,15 +103,21 @@
 		            $('#learningTable').append(tr);
 		        }
 		    });
-		})
+		});
 
 		function joinClass(classID){
+			document.getElementById("classID").value = classID;
+			document.getElementById("userType").value = "Student";
 			alert("joining class..."+ classID);
+			$('#videoReqForm').submit();
 		}
 
-    function startClass(classID){
-      alert("starting class..."+ classID);
-    }
+	    function startClass(classID){
+	    	document.getElementById("classID").value = classID;
+			document.getElementById("userType").value = "Teacher";
+	      	alert("starting class..."+ classID);
+	      	$('#videoReqForm').submit();
+	    }
     </script>
 
 

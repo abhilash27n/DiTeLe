@@ -163,11 +163,11 @@ router.get('/getClasses', function(req, res, next) {
   	var username = req.session.username;
   	var query;
   	if(option == "TEACH")
-		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
-	else if(option == "AVBL")
-		query = 'select userID, classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID <> "'+username+'"';
-	else if(option == "REGED")
-		query = 'select C.classID, C.userID, classTopic,subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class C, Registration R where C.classID = R.classID and R.userID = "'+username+'"';
+  		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
+  	else if(option == "AVBL")
+  		query = 'select userID, classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class C where C.userID <> "'+username+'" and C.classID not in (select classID from Registration where userID = "'+username+'");';
+  	else if(option == "REGED")
+  		query = 'select C.classID, C.userID, classTopic,subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class C, Registration R where C.classID = R.classID and R.userID = "'+username+'"';
 	connection.query(query, function(err, rows, fields) {
 	  if (!err){
 		res.send(JSON.stringify(rows));

@@ -126,7 +126,7 @@ router.post('/regTeacher', function(req, res, next) {
 router.get('/getTeachingClass', function(req, res, next) {
   	console.log("Getting Teaching class...");
   	var username = req.session.username;
-	var query = 'select classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
+	var query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
 	connection.query(query, function(err, rows, fields) {
 	  if (!err){
 		res.send(JSON.stringify(rows));

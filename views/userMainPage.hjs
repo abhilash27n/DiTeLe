@@ -50,7 +50,6 @@
 		    function (json) {
 		        var tr;
 		        var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};
-		        alert(json);
 		        for (var i = 0; i < json.length; i++) {
 		            tr = $('<tr/>');
 		            tr.append("<td>" + json[i].classTopic + "</td>");
@@ -58,10 +57,15 @@
 		            tr.append("<td>" + weekdayMap[json[i].dayOfTheWeek] + "</td>");
 		            tr.append("<td>" + json[i].classStartTime+ "</td>");
 		            tr.append("<td>" + json[i].classEndTime+ "</td>");
+		            tr.append("<td> <input type='button' value='Start Class' onClick='startClass("+ json[i].classID+")' /> </td>")
 		            $('#teachingTable').append(tr);
 		        }
 		    });
-		});
+		})
+		
+		function startClass(classID){
+			alert(classID);
+		}
     </script>
 
 

@@ -93,6 +93,17 @@ router.post('/registerToTeach', function(req, res, next) {
   }
 });
 
+//Render Register to Teach
+router.post('/registerToLearn', function(req, res, next) {
+  if(req.session.username){
+  	console.log("Registering to Learn Page");
+  	res.render("registerToLearn", {name: req.session.username});
+  }
+  else{
+  	res.render("index");
+  }
+});
+
 
 //Register to teach data form submit
 router.post('/regTeacher', function(req, res, next) {

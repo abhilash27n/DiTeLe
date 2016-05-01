@@ -162,10 +162,12 @@ router.get('/getClasses', function(req, res, next) {
   	var option = req.query.user;
   	var username = req.session.username;
   	var query;
-  	if(option == "USER")
+  	if(option == "TEACH")
 		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class where userID = "'+username+'"';
-	else if(option == "ALL")
+	else if(option == "AVBL")
 		query = 'select classID, classTopic, subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class';
+	else if(option == "REGED")
+		query = 'select C.classID, C.userID, classTopic,subTopic, dayOfTheWeek, classStartTime, classEndTime, noteFromTutor from Class C, Registration R where C.classID = R.classID and R.userID = "'+username+'"';
 	connection.query(query, function(err, rows, fields) {
 	  if (!err){
 		res.send(JSON.stringify(rows));

@@ -23,7 +23,7 @@
      <!-- <form id="regToLearn" action="/regStudent" method="post"> -->
     <script type="text/javascript">
         $(document).ready(function () {
-            $.getJSON("/getClasses?user=ALL",
+            $.getJSON("/getClasses?user=AVBL",
             function (json) {
                 var tr;
                 var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};

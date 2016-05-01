@@ -29,7 +29,6 @@ CREATE TABLE Class(
 CREATE TABLE Registration(
 	userID varchar(20),
 	classID int,
-	userType varchar(2),
 	FOREIGN KEY (userID) references Users(userID),
 	FOREIGN KEY (classID) references Class(classID)
 );

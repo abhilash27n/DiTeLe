@@ -53,7 +53,7 @@
 
     <script type="text/javascript">
     	$(document).ready(function () {
-		    $.getJSON("/getTeachingClass?user=USER",
+		    $.getJSON("/getClasses?user=USER",
 		    function (json) {
 		        var tr;
 		        var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};
@@ -74,6 +74,7 @@
 			alert(classID);
 		}
     </script>
+    
 
 
   </body>

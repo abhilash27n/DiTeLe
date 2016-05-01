@@ -116,6 +116,11 @@ router.post('/regTeacher', function(req, res, next) {
   	var startTime = [req.body.monStartTime,req.body.tueStartTime,req.body.wedStartTime,req.body.thuStartTime,req.body.friStartTime,req.body.satStartTime,req.body.sunStartTime];
   	var endTime = [req.body.monEndTime,req.body.tueEndTime,req.body.wedEndTime,req.body.thuEndTime,req.body.friEndTime,req.body.satEndTime,req.body.sunEndTime];
   	var weekDayArray = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6};
+
+  	if(typeof weekCheck == "string"){
+  		weekCheck = [weekCheck];
+  	}
+
   	for(var i = 0; i < weekCheck.length; i++){
   		var index = weekDayArray[weekCheck[i]];
   		console.log("Registering for "+weekCheck[i]);
@@ -123,18 +128,33 @@ router.post('/regTeacher', function(req, res, next) {
   		connection.query('INSERT INTO Class SET ?', tuple, function(err, response) {
 		  if (!err){
 			console.log('Registration for class successful');
+			var query = 'INSERT INTO Registration (userID, classID, userType) values ("'+req.session.username+'", select max(classID) from Class, "TU")';
+			connection.query(query, function(err, rows, fields) {
+				  if (!err){
+					console.log('Tutor entered into Registration table');
+				  }
+				  else{
+				  	console.log('Error entering registration details');
+				  }
+				    
+				});
 		  }
 		  else{
 		  	console.log('Registration error, probably due to data config');
 		  }
 		    
 		});
+
+  		
+
+
+
   	}
   	res.render("userMainPage", {name: req.session.fullname});
 });
 
 //get teaching classes
-router.get('/getTeachingClass', function(req, res, next) {
+router.get('/getClasses', function(req, res, next) {
   	console.log("Getting Teaching class...");
   	var option = req.query.user;
   	var username = req.session.username;

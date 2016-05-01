@@ -8,14 +8,42 @@
   <body>
     <h1>Register To Learn</h1>
     <p>{{ error }}</p>
-    <form id="regToLearn" action="/regStudent" method="post">
-	    <table>
-	    	
-	    </table>
-    </form>
 
+    <table id="classTable" border="1" cellpadding="5px">
+        <tr>
+            <th>Class</th>
+            <th>Description</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Note From Tutor</th>
+        </tr>
+    </table>
+
+     <!-- <form id="regToLearn" action="/regStudent" method="post"> -->
     <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("/getClasses?user=ALL",
+            function (json) {
+                var tr;
+                var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};
+                for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].classTopic + "</td>");
+                    tr.append("<td>" + json[i].subTopic+ "</td>");
+                    tr.append("<td>" + weekdayMap[json[i].dayOfTheWeek] + "</td>");
+                    tr.append("<td>" + json[i].classStartTime+ "</td>");
+                    tr.append("<td>" + json[i].classEndTime+ "</td>");
+                    tr.append("<td>" + json[i].noteFromTutor+ "</td>");
+                    tr.append("<td> <input type='button' value='Register For Class' onClick='registerForClass("+ json[i].classID+")' /> </td>")
+                    $('#classTable').append(tr);
+                }
+            });
+        })
 
+        function registerForClass(classID){
+            alert(classID);
+        }
    
 
     </script>

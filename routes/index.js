@@ -189,7 +189,6 @@ router.post('/videoConf', function(req, res, next) {
 	var classID = req.body.classID;
 	var userType = req.body.userType;
 	res.render('videoConf', {classID: classID, userType: userType});
-
 });
 
 

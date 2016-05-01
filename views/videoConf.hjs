@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<hr>
-/room-id/<input type="text" id="room-id" placeholder="room-id" value="{{ classID }}" style="width: 100px;">/
-<input type="text" id="userType" name="userType" value="{{ userType }}" />
-<button id="open">Open</button>
-<button id="join">Join</button>
-<hr>
+<div style="display:none;">
+    <hr>
+        /room-id/<input type="text" id="room-id" placeholder="room-id" value="{{ classID }}" style="width: 100px;">/
+        <input type="text" id="userType" name="userType" value="{{ userType }}" />
+        <button id="open">Open</button>
+        <button id="join">Join</button>
+    <hr>
+</div>
 <div id="videos-container"></div>
 
 <link rel="stylesheet" href="/stylesheets/style-video.css">
@@ -13,9 +15,20 @@
 <script src="/reliable-signaler/signaler.js"></script>
 <script src="../javascripts/conference.js"></script>
 <script src="../javascripts/RTCPeerConnection-v1.5.js"></script>
+<script src="../javascripts/jquery-1.10.2.js"></script>
 
 <script>
 // https://github.com/muaz-khan/WebRTC-Experiment/tree/master/video-conferencing
+
+$(document).ready(function () {
+   var userType = document.getElementById("userType").value;
+   if(userType == "Teacher"){
+    document.getElementById("open").click();
+   }
+   else if(userType == "Student"){
+    document.getElementById("join").click();
+   }
+});
 
 var videosContainer = document.getElementById('videos-container');
 

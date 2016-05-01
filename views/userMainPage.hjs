@@ -108,14 +108,14 @@
 		function joinClass(classID){
 			document.getElementById("classID").value = classID;
 			document.getElementById("userType").value = "Student";
-			alert("joining class..."+ classID);
+			//alert("joining class..."+ classID);
 			$('#videoReqForm').submit();
 		}
 
 	    function startClass(classID){
 	    	document.getElementById("classID").value = classID;
 			document.getElementById("userType").value = "Teacher";
-	      	alert("starting class..."+ classID);
+	      	//alert("starting class..."+ classID);
 	      	$('#videoReqForm').submit();
 	    }
     </script>

@@ -127,30 +127,33 @@ router.post('/regTeacher', function(req, res, next) {
   		var tuple = {userID: username, classTopic: topic, subTopic: subTopic, dayOfTheWeek: index, classStartTime: startTime[index], classEndTime: endTime[index], noteFromTutor: note}
   		connection.query('INSERT INTO Class SET ?', tuple, function(err, response) {
 		  if (!err){
-			console.log('Registration for class successful');
-			var query = 'INSERT INTO Registration (userID, classID, userType) values ("'+req.session.username+'", (select max(classID) from Class), "TU")';
-			connection.query(query, function(err, rows, fields) {
-				  if (!err){
-					console.log('Tutor entered into Registration table');
-				  }
-				  else{
-				  	console.log('Error entering registration details');
-				  }
-				    
-				});
+			console.log('Registration to teach successful');
 		  }
 		  else{
 		  	console.log('Registration error, probably due to data config');
 		  }
 		    
 		});
-
-  		
-
-
-
   	}
-  	res.render("userMainPage", {name: req.session.fullname});
+  	res.render("userMainPage", {name: req.session.fullname, message: "Successfully Registered to teach class."});
+});
+
+//Register to teach data form submit
+router.post('/regStudent', function(req, res, next) {
+  	console.log("Registering to Learn...");
+  	var username = req.session.username;
+  	var classID = req.body.classID;
+	var tuple = {userID: username, classID: classID};
+	connection.query('INSERT INTO Registration SET ?', tuple, function(err, response) {
+	  if (!err){
+		console.log('Registration to learn successful');
+	  }
+	  else{
+	  	console.log('Registration error, probably due to data config');
+	  }
+	    
+	});
+  	res.render("userMainPage", {name: req.session.fullname, message: "Successfully registered to learn class."});
 });
 
 //get teaching classes

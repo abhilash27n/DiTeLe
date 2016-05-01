@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DiTeLe - Welcom</title>
+    <title>DiTeLe - Welcome</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="../javascripts/jquery-1.10.2.js"></script>
   </head>
   <body>
     <h1>Hi, {{ name }} </h1>
+    <h3> {{ message }} </h3>
     <h2>What would you like to do today??</h2>
+
     <table style= "width:100%">
     	<tr>
 	    	<td>

@@ -3,16 +3,67 @@
   <head>
     <title>DiTeLe - Welcom</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="../javascripts/jquery-1.10.2.js"></script>
   </head>
   <body>
     <h1>Hi, {{ name }} </h1>
     <h2>What would you like to do today??</h2>
-    <form id="regTeach" action="/registerToTeach" method="post">
-        <input type="submit"value="I want to Teach!"/>
-    </form>
-    <br/>
-    <form id="regLearn" action="/registerToLearn" method="post">
-        <input type="submit"value="I want to Learn!"/>
-    </form>
+    <table style= "width:100%">
+    	<tr>
+	    	<td>
+		    	<form id="regTeach" action="/registerToTeach" method="post">
+		        	<input type="submit"value="I want to Teach!"/>
+			    </form>
+		    </td>
+		    <td>
+			    <form id="regLearn" action="/registerToLearn" method="post">
+			        <input type="submit"value="I want to Learn!"/>
+			    </form>
+		    </td>
+		</tr>
+
+	    <tr>
+	    	<td>
+	    		<table id = 'teachingTable' border="1">
+	    			<tr>
+	    				<th>Class</th>
+	    				<th>Description</th>
+	    				<th>Day</th>
+	    				<th>Start Time</th>
+	    				<th>End Time</th>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<h2>here for learning</h2>
+	    		</table>
+	    	</td>	    	
+	    </tr>   
+
+    </table>
+    
+
+    <script type="text/javascript">
+    	$(document).ready(function () {
+		    $.getJSON("/getTeachingClass",
+		    function (json) {
+		        var tr;
+		        var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};
+		        alert(json);
+		        for (var i = 0; i < json.length; i++) {
+		            tr = $('<tr/>');
+		            tr.append("<td>" + json[i].classTopic + "</td>");
+		            tr.append("<td>" + json[i].subTopic+ "</td>");
+		            tr.append("<td>" + weekdayMap[json[i].dayOfTheWeek] + "</td>");
+		            tr.append("<td>" + json[i].classStartTime+ "</td>");
+		            tr.append("<td>" + json[i].classEndTime+ "</td>");
+		            $('#teachingTable').append(tr);
+		        }
+		    });
+		});
+    </script>
+
+
   </body>
 </html>

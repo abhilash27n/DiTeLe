@@ -128,7 +128,7 @@ router.post('/regTeacher', function(req, res, next) {
   		connection.query('INSERT INTO Class SET ?', tuple, function(err, response) {
 		  if (!err){
 			console.log('Registration for class successful');
-			var query = 'INSERT INTO Registration (userID, classID, userType) values ("'+req.session.username+'", select max(classID) from Class, "TU")';
+			var query = 'INSERT INTO Registration (userID, classID, userType) values ("'+req.session.username+'", (select max(classID) from Class), "TU")';
 			connection.query(query, function(err, rows, fields) {
 				  if (!err){
 					console.log('Tutor entered into Registration table');

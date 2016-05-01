@@ -9,15 +9,15 @@
 
     <table id="classTable" border="1" cellpadding="5px">
         <tr>
-            <td>Name</td>
+            <td><b>Name</b></td>
             <td>{{ name }}</td>
         </tr>
         <tr>
-            <td>Email</td>
+            <td><b>Email</b></td>
             <td>{{ email }}</td>
         </tr>
         <tr>
-            <td>About</td>
+            <td><b>About</b></td>
             <td>{{ about }}</td>
         </tr>
         </tr>

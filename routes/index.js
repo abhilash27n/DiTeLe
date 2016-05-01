@@ -191,5 +191,18 @@ router.post('/videoConf', function(req, res, next) {
 	res.render('videoConf', {classID: classID, userType: userType});
 });
 
+//get user profile
+router.get('/getUserProfile', function(req, res, next) {
+	var username = req.query.user;
+	var query = 'select fullname, emailID, about from Users where userID = "'+username+'"';
+	connection.query(query, function(err, rows, fields) {
+	  if (!err){
+		res.render('profilePage', {name: rows[0].fullname, email: rows[0].emailID, about: rows[0].about});
+	  }
+	  else{
+	  	console.log('Error getting user profile');
+	  }
+	});
+});
 
 module.exports = router;

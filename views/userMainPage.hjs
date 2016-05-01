@@ -92,7 +92,7 @@
 		        var weekdayMap = {0:"Monday",1:"Tuesday",2:"Wednesday",3:"Thursday",4:"Friday",5:"Saturday",6:"Sunday"};
 		        for (var i = 0; i < json.length; i++) {
 		            tr = $('<tr/>');
-		            tr.append("<td>" + json[i].userID+ "</td>");
+		            tr.append("<td> <a href='/getUserProfile?user=" + json[i].userID+"'>"+ json[i].userID +"</a></td>");
 		            tr.append("<td>" + json[i].classTopic + "</td>");
 		            tr.append("<td>" + json[i].subTopic+ "</td>");
 		            tr.append("<td>" + weekdayMap[json[i].dayOfTheWeek] + "</td>");
